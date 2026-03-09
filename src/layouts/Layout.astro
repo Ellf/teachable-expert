@@ -1,0 +1,23 @@
+---
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { title, description = "Expert Teachable development, API integrations, and custom school architecture." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title} | Teachable Expert Developer</title>
+  <meta name="description" content={description} />
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+<slot />
+</body>
+</html>
