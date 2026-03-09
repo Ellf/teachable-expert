@@ -1,0 +1,71 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+    const guides = await getCollection('api-guides');
+    return guides.map(guide => ({
+        params: { id: guide.id },
+        props: { guide },
+    }));
+}
+
+const { guide } = Astro.props;
+const { Content } = await render(guide);
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": guide.data.title,
+  "description": guide.data.description,
+  "author": {
+    "@type": "Organization", // Or "Person" if you prefer to use your name
+    "name": "Teachable Expert"
+  },
+  "datePublished": guide.data.pubDate.toISOString(),
+  "dependencies": "Teachable API",
+  "proficiencyLevel": "Expert"
+};
+---
+
+<Layout
+    title={`${guide.data.title} | Teachable Expert`}
+    description={guide.data.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <main class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+
+    <article>
+      <header class="mb-12 text-center">
+          {guide.data.method && (
+              <span class="mb-4 inline-block rounded-full bg-expert-100 px-3 py-1 font-mono text-sm font-bold text-expert-800 dark:bg-expert-900 dark:text-expert-100">
+            {guide.data.method}
+          </span>
+          )}
+
+        <h1 class="mb-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
+            {guide.data.title}
+        </h1>
+
+        <p class="text-xl text-slate-600 dark:text-slate-400">
+            {guide.data.description}
+        </p>
+
+        <div class="mt-6 flex items-center justify-center gap-4 text-sm text-slate-500">
+          <time datetime={guide.data.pubDate.toISOString()}>
+            Published on {guide.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          </time>
+        </div>
+      </header>
+
+      <div class="prose prose-slate prose-lg mx-auto dark:prose-invert prose-a:text-expert-500 hover:prose-a:text-expert-600 prose-code:font-mono prose-code:text-expert-500 prose-code:bg-slate-100 dark:prose-code:bg-slate-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-800">
+        <Content />
+      </div>
+
+    </article>
+
+    <div class="mt-16 border-t border-slate-200 pt-8 dark:border-slate-800">
+      <a href="/" class="font-semibold text-expert-500 hover:text-expert-600">&larr; Back to all guides</a>
+    </div>
+
+  </main>
+</Layout>

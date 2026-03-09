@@ -1,0 +1,58 @@
+/* src/styles/global.css */
+@import "tailwindcss";
+
+@theme {
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+
+    /* Custom Expert Palette */
+    --color-expert-50: #f0f9ff;
+    --color-expert-100: #e0f2fe;
+    --color-expert-500: #0ea5e9;
+    --color-expert-600: #0284c7; /* <-- Add this missing color */
+    --color-expert-800: #0c4a6e;
+    --color-expert-900: #082f49;
+    --color-expert-950: #041c2c;
+}
+
+/* Our Custom, Bug-Free Typography Engine */
+@utility prose {
+    & h1 {
+        @apply text-4xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white;
+    }
+    & h2 {
+        @apply text-2xl font-bold mt-10 mb-4 text-slate-900 dark:text-white;
+    }
+    & h3 {
+        @apply text-xl font-bold mt-8 mb-4 text-slate-900 dark:text-white;
+    }
+    & p {
+        @apply text-lg leading-relaxed mb-6 text-slate-700 dark:text-slate-300;
+    }
+    & a {
+        @apply font-semibold text-expert-500 hover:text-expert-600 underline underline-offset-4 decoration-expert-500/30 transition-colors;
+    }
+    & ul {
+        @apply list-disc list-outside ml-6 mb-6 space-y-2 text-lg text-slate-700 dark:text-slate-300;
+    }
+    & blockquote {
+        @apply border-l-4 border-expert-500 pl-6 italic text-slate-700 dark:text-slate-300 my-8 bg-slate-100 dark:bg-slate-800/50 py-4 pr-4 rounded-r-lg;
+    }
+
+    /* The "IDE" Code Block Styling */
+    & code {
+        @apply font-mono text-sm bg-slate-100 dark:bg-slate-800 text-expert-500 px-1.5 py-0.5 rounded-md border border-slate-200 dark:border-slate-700;
+    }
+    & pre {
+        @apply text-slate-50 p-6 rounded-xl overflow-x-auto mb-8 border border-slate-800 shadow-lg; /* Removed bg-slate-900 */
+    }
+    & pre code {
+        @apply bg-transparent text-inherit p-0 border-0 text-sm leading-loose font-mono;
+    }
+}
+
+@layer base {
+    body {
+        @apply bg-slate-50 text-slate-900 antialiased selection:bg-expert-500 selection:text-white dark:bg-expert-950 dark:text-slate-100;
+    }
+}

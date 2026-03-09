@@ -1,0 +1,18 @@
+---
+// src/components/ServiceCard.astro
+interface Props {
+    title: string;
+    codeSnippet: string;
+    description: string;
+}
+
+const { title, codeSnippet, description } = Astro.props;
+---
+
+<div class="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all hover:border-blue-500 dark:border-slate-800 dark:bg-slate-900">
+  <div class="mb-4 font-mono text-xs text-blue-500">{codeSnippet}</div>
+  <h3 class="mb-2 text-xl font-bold tracking-tight">{title}</h3>
+  <p class="text-sm text-slate-600 dark:text-slate-400">{description}</p>
+
+  <div class="absolute -inset-px -z-10 bg-gradient-to-br from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+</div>
