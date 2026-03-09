@@ -44,24 +44,43 @@ const latestGuides = allGuides
 				{latestGuides.map((guide, index) => (
 					<a
 						href={`/api-guides/${guide.id}`}
-						class={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition-all hover:-translate-y-1 hover:border-expert-500 hover:shadow-xl dark:border-expert-800 dark:bg-expert-900/50 ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
+						class={`group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all hover:-translate-y-1 hover:border-expert-500 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900/50 ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
 					>
-						<div class="absolute right-0 top-0 p-6 opacity-20 transition-opacity group-hover:opacity-40">
-							{guide.data.method && (
-								<span class="font-mono text-xs font-bold text-expert-500">{guide.data.method}</span>
-							)}
-						</div>
+						{guide.data.coverImage && (
+							<div class="relative w-full overflow-hidden border-b border-slate-100 aspect-[1200/630] dark:border-slate-800">
+								<img
+									src={guide.data.coverImage}
+									alt={`Cover for ${guide.data.title}`}
+									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+								/>
+							</div>
+						)}
 
-						<div class={`relative z-10 mt-auto ${index === 0 ? 'pt-16' : 'pt-8'}`}>
-							<h3 class="mb-2 text-xl font-bold text-slate-900 dark:text-white">{guide.data.title}</h3>
-							<p class="text-sm text-slate-600 dark:text-slate-400">{guide.data.description}</p>
+						<div class="flex flex-grow flex-col justify-between p-6 sm:p-8">
+							<div>
+								{guide.data.method && (
+									<div class="mb-4">
+                    <span class="inline-flex items-center rounded-md bg-expert-50 px-2.5 py-1 font-mono text-xs font-semibold text-expert-600 ring-1 ring-inset ring-expert-500/20 dark:bg-expert-500/10 dark:text-expert-400">
+                      {guide.data.method}
+                    </span>
+									</div>
+								)}
+
+								<h3 class={`font-bold text-slate-900 dark:text-white ${index === 0 ? 'mb-3 text-2xl' : 'mb-2 text-xl'}`}>
+									{guide.data.title}
+								</h3>
+
+								<p class={`text-slate-600 dark:text-slate-400 ${index === 0 ? 'text-base' : 'text-sm line-clamp-3'}`}>
+									{guide.data.description}
+								</p>
+							</div>
 						</div>
 					</a>
 				))}
 
 				<div class="flex flex-col items-center justify-center rounded-3xl bg-expert-500 p-8 text-center text-white md:col-span-3 lg:col-span-2">
 					<h3 class="mb-4 text-2xl font-bold">Ready to scale your technical infrastructure?</h3>
-					<a href="mailto:hello@teachable.expert" class="rounded-full bg-white px-6 py-3 font-bold text-expert-900 transition-colors hover:bg-slate-100">
+					<a href="https://purplehippo.io/#contact-form" target="_blank" rel="noopener noreferrer" class="rounded-full bg-white px-6 py-3 font-bold text-expert-900 transition-colors hover:bg-slate-100">
 						Let's talk architecture
 					</a>
 				</div>

@@ -8,8 +8,9 @@ const apiGuides = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
-        method: z.string().optional(), // Perfect for "POST /api/v1" badges
+        method: z.string().optional(),
         pubDate: z.coerce.date(),
+        coverImage: z.string().optional(),
     })
 });
 

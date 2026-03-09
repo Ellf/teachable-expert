@@ -1,0 +1,41 @@
+---
+const currentYear = new Date().getFullYear();
+---
+<footer class="mt-auto border-t border-slate-200 bg-white py-12 dark:border-slate-800 dark:bg-slate-950">
+    <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+
+        <div class="mb-8 flex justify-center">
+            <a
+                    href="https://teachable.com/experts"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group flex flex-col items-center gap-3 transition-transform hover:scale-105"
+            >
+                <img
+                        src="/teachableexpert-badge.png"
+                        alt="Official Teachable Expert Badge"
+                        class="h-16 w-auto object-contain drop-shadow-sm grayscale transition-all group-hover:grayscale-0 dark:brightness-110"
+                />
+                <span class="text-xs font-semibold uppercase tracking-widest text-expert-500">Official Vetted Partner</span>
+            </a>
+        </div>
+
+        <div class="mb-4 text-lg font-bold text-slate-900 dark:text-white">
+            Teachable Expert
+        </div>
+
+        <p class="mb-6 text-sm text-slate-500 dark:text-slate-400">
+            Custom API architecture, webhook development, and advanced data integrations <br class="hidden sm:block" />
+            for high-volume Teachable creators.
+        </p>
+
+        <div class="text-xs text-slate-400 dark:text-slate-500">
+            &copy; {currentYear} Teachable Expert. All rights reserved. <br/>
+            <span class="mt-2 inline-block">
+                Teachable Expert is an independent consultancy and official Teachable Partner. <br class="hidden sm:block" />
+                Teachable is a registered trademark of Teachable, Inc.
+            </span>
+        </div>
+
+    </div>
+</footer>
