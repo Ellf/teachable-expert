@@ -32,6 +32,8 @@ const schema = {
 <Layout
     title={`${guide.data.title} | Teachable Expert`}
     description={guide.data.description}
+    image={guide.data.coverImage}
+    type="article"
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
   <main class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
