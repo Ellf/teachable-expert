@@ -20,4 +20,8 @@ export default defineConfig({
   },
 
   integrations: [sitemap()],
+  redirects: {
+    '/teachable-api/': '/api-guides/teachable-api',
+    '/teachable-api': '/api-guides/teachable-api' // Catch both trailing and non-trailing slashes
+  }
 });
