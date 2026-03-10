@@ -4,6 +4,7 @@ description: "Stop paying for Zapier Premium. Learn how to build a custom Node.j
 method: "POST /webhooks/shopify"
 pubDate: 2026-03-09
 coverImage: "/placeholder.jpg"
+category: "ecommerce"
 ---
 
 Selling physical products alongside digital courses is a massive revenue driver, but connecting Shopify to Teachable usually forces you into Zapier's expensive "Premium" tier.

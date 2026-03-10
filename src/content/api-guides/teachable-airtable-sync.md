@@ -3,7 +3,8 @@ title: "Building a Resilient Teachable to Airtable Sync (Why Zapier Breaks)"
 description: "Google Sheets and Zapier are too fragile for production revenue data. Learn how to build a bulletproof webhook bridge to Airtable."
 method: "POST /webhooks/database"
 pubDate: 2026-03-09
-coverImage: "/placeholder.jpg"
+coverImage: "/teachable-airtable.jpg"
+category: "database"
 ---
 
 If you run a high-volume Teachable school, you need a database. Most creators start with a Zapier integration that pushes new sales into a Google Sheet.
@@ -17,44 +18,39 @@ Google Sheets is a spreadsheet, not a relational database. When you outgrow it, 
 ### The Architecture: Bulletproof Data Flow
 By controlling the webhook receiver in Node.js, we can intercept the Teachable payload, format it exactly how our database expects it, and handle API rate limits gracefully.
 
-1. **Catch the Webhook:** Listen for `Transaction.Created` from Teachable.
-2. **Transform the Data:** Map Teachable's nested JSON array into a flat Airtable record.
-3. **Error Handling:** If Airtable rejects the payload, our server catches the error and triggers a Slack alert, rather than failing silently.
+Furthermore, because Teachable lacks native webhook signatures, exposing a raw endpoint is a massive security risk. We wrap our listener in a token-validation gateway to ensure only legitimate Teachable traffic can write to our Airtable base.
 
-### The Code: Node.js to Airtable API
+1. **Secure the Gateway:** Reject any request missing our custom `?token=` parameter.
+2. **Catch the Webhook:** Listen specifically for `Transaction.Created`.
+3. **Transform the Data:** Map Teachable's nested JSON array into a flat Airtable record.
+4. **Error Handling:** If Airtable rejects the payload, trigger a Slack alert rather than failing silently.
 
-This snippet demonstrates how to securely catch the Teachable transaction and write it directly to an Airtable base using their official SDK.
+### The Code: Secure Node.js to Airtable API
+
+This snippet demonstrates how to safely catch the Teachable transaction and write it directly to an Airtable base using their official SDK.
 
 ```javascript
 const express = require('express');
-const crypto = require('crypto');
 const Airtable = require('airtable');
 
 const app = express();
-const TEACHABLE_SECRET = process.env.TEACHABLE_WEBHOOK_SECRET;
+app.use(express.json());
+
+const AUTH_TOKEN = process.env.TEACHABLE_WEBHOOK_TOKEN;
 
 // Initialize Airtable Base
 const base = new Airtable({ apiKey: process.env.AIRTABLE_PAT }).base(process.env.AIRTABLE_BASE_ID);
 
-app.use(express.json({
-  verify: (req, res, buf) => { req.rawBody = buf; }
-}));
-
 app.post('/webhooks/database', async (req, res) => {
-  const signature = req.headers['teachable-signature'];
+  // 1. Gateway Security Validation
+  const providedToken = req.query.token;
   
-  // 1. Validate the Teachable HMAC Signature
-  const hash = crypto
-    .createHmac('sha256', TEACHABLE_SECRET)
-    .update(req.rawBody)
-    .digest('hex');
-
-  if (signature !== hash) {
-    return res.status(401).send('Unauthorized webhook payload');
+  if (providedToken !== AUTH_TOKEN) {
+    return res.status(401).send('Unauthorized: Invalid webhook token');
   }
 
   // Acknowledge receipt immediately
-  res.status(200).send('Webhook received');
+  res.status(200).send('Webhook received safely');
 
   const eventType = req.body.type;
   const payload = req.body.object;
@@ -83,7 +79,7 @@ app.post('/webhooks/database', async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Teachable-Airtable sync running'));
+app.listen(3000, () => console.log('Secure Teachable-Airtable sync running'));
 ```
 
 ### Why this architecture wins

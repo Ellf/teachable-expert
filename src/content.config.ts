@@ -11,6 +11,7 @@ const apiGuides = defineCollection({
         method: z.string().optional(),
         pubDate: z.coerce.date(),
         coverImage: z.string().optional(),
+        category: z.string().optional(),
     })
 });
 
