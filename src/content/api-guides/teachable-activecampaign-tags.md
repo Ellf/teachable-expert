@@ -3,7 +3,7 @@ title: "Advanced Teachable Email Syncing: Handling Refunds & Progress Tags"
 description: "Why your Zapier email integration is failing your marketing team, and how to build a robust ActiveCampaign or Mailchimp webhook bridge."
 method: "POST /webhooks/teachable"
 pubDate: 2026-03-09
-coverImage: "/placeholder.jpg"
+coverImage: "/teachable-mailchimp.jpg"
 category: "email"
 ---
 
