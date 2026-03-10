@@ -6,11 +6,6 @@ import { getCollection } from 'astro:content';
 // 1. Fetch all guides
 const allGuides = await getCollection('api-guides');
 
-// 2. Sort by newest and grab the top 4 for the homepage grid
-const latestGuides = allGuides
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 4);
-
 const categoryColors: Record<string, string> = {
 	ecommerce: "bg-emerald-50/50 hover:bg-emerald-50 dark:bg-emerald-950/20 dark:hover:bg-emerald-900/30 hover:border-emerald-500",
 	email: "bg-indigo-50/50 hover:bg-indigo-50 dark:bg-indigo-950/20 dark:hover:bg-indigo-900/30 hover:border-indigo-500",
@@ -48,45 +43,46 @@ const categoryColors: Record<string, string> = {
 
 			<div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 auto-rows-[minmax(200px,auto)]">
 
-				{latestGuides.map((guide, index) => {
+				{allGuides.map((guide, index) => {
 					const themeClass = categoryColors[guide.data.category || 'default'] || categoryColors.default;
+				  	const gridClass = index === 0 ? 'md:col-span-2' : 'col-span-1';
 
 					return (
-					<a
-						href={`/api-guides/${guide.id}`}
-						class={`group flex flex-col overflow-hidden rounded-3xl border border-slate-200 transition-all hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 ${themeClass} ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
-					>
-						{guide.data.coverImage && (
-							<div class="relative w-full overflow-hidden border-b border-slate-100 aspect-[1200/630] dark:border-slate-800">
-								<img
-									src={guide.data.coverImage}
-									alt={`Cover for ${guide.data.title}`}
-									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-								/>
+						<a
+							href={`/api-guides/${guide.id}`}
+							class={`group flex flex-col overflow-hidden rounded-3xl border border-slate-200 transition-all hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 ${themeClass} ${gridClass}`}
+						>
+							{guide.data.coverImage && (
+								<div class="relative w-full overflow-hidden border-b border-slate-100 aspect-[1200/630] dark:border-slate-800">
+									<img
+										src={guide.data.coverImage}
+										alt={`Cover for ${guide.data.title}`}
+										class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+									/>
+								</div>
+							)}
+
+							<div class="flex flex-grow flex-col justify-between p-6 sm:p-8">
+								<div>
+									{guide.data.method && (
+										<div class="mb-4">
+                      <span class="inline-flex items-center rounded-md bg-expert-50 px-2.5 py-1 font-mono text-xs font-semibold text-expert-600 ring-1 ring-inset ring-expert-500/20 dark:bg-expert-500/10 dark:text-expert-400">
+                        {guide.data.method}
+                      </span>
+										</div>
+									)}
+
+									<h3 class={`font-bold text-slate-900 dark:text-white ${index === 0 ? 'mb-3 text-2xl' : 'mb-2 text-xl'}`}>
+										{guide.data.title}
+									</h3>
+
+									<p class={`text-slate-600 dark:text-slate-400 ${index === 0 ? 'text-base' : 'text-sm line-clamp-3'}`}>
+										{guide.data.description}
+									</p>
+								</div>
 							</div>
-						)}
-
-						<div class="flex flex-grow flex-col justify-between p-6 sm:p-8">
-							<div>
-								{guide.data.method && (
-									<div class="mb-4">
-                    <span class="inline-flex items-center rounded-md bg-expert-50 px-2.5 py-1 font-mono text-xs font-semibold text-expert-600 ring-1 ring-inset ring-expert-500/20 dark:bg-expert-500/10 dark:text-expert-400">
-                      {guide.data.method}
-                    </span>
-									</div>
-								)}
-
-								<h3 class={`font-bold text-slate-900 dark:text-white ${index === 0 ? 'mb-3 text-2xl' : 'mb-2 text-xl'}`}>
-									{guide.data.title}
-								</h3>
-
-								<p class={`text-slate-600 dark:text-slate-400 ${index === 0 ? 'text-base' : 'text-sm line-clamp-3'}`}>
-									{guide.data.description}
-								</p>
-							</div>
-						</div>
-					</a>
-				)})}
+						</a>
+					)})}
 
 				<div class="flex flex-col items-center justify-center rounded-3xl bg-expert-500 p-8 text-center text-white md:col-span-3 lg:col-span-2">
 					<h3 class="mb-4 text-2xl font-bold">Ready to scale your technical infrastructure?</h3>

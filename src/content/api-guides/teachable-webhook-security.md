@@ -3,7 +3,7 @@ title: "Securing Teachable Webhooks: The Secret Token Gateway"
 description: "Teachable doesn't cryptographically sign its webhooks. Learn how to protect your server from spoofed API payloads using a secret token gateway."
 method: "POST /hooks"
 pubDate: 2026-03-10
-coverImage: "/placeholder.jpg"
+coverImage: "/placeholder-image.jpg"
 category: "security"
 ---
 

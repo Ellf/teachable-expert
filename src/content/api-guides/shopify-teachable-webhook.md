@@ -3,7 +3,7 @@ title: "Bypass Zapier: Connect Shopify Orders to Teachable via Webhooks"
 description: "Stop paying for Zapier Premium. Learn how to build a custom Node.js webhook to automatically enroll Shopify customers into Teachable courses."
 method: "POST /webhooks/shopify"
 pubDate: 2026-03-09
-coverImage: "/placeholder.jpg"
+coverImage: "/placeholder-image.jpg"
 category: "ecommerce"
 ---
 
