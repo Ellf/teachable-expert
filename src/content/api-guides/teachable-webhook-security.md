@@ -3,8 +3,10 @@ title: "Securing Teachable Webhooks: The Secret Token Gateway"
 description: "Teachable doesn't cryptographically sign its webhooks. Learn how to protect your server from spoofed API payloads using a secret token gateway."
 method: "POST /hooks"
 pubDate: 2026-03-10
-coverImage: "/placeholder-image.jpg"
+coverImage: "/images/cover/teachable-api-webhook-limits.jpg"
+articleImage: "/images/article/placeholder-image.jpg"
 category: "security"
+tags: ["teachable", "webhooks", "security", "automation"]
 ---
 
 When you build a custom webhook endpoint to listen for Teachable sales or enrollments, you are opening a door directly to your server.

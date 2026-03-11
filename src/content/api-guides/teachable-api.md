@@ -3,8 +3,10 @@ title: "The Teachable API: Architecture, Limits, and Webhooks"
 description: "Everything you need to know about building custom integrations with Teachable. A senior developer's guide to REST endpoints, rate limits, and event-driven data."
 method: "GET /v1/users"
 pubDate: 2026-03-10
-coverImage: "/placeholder-image.jpg"
+coverImage: "/images/cover/teachable-api-webhook-limits.jpg"
+articleImage: "/images/article/placeholder-image.jpg"
 category: "architecture"
+tags: ["teachable", "api", "webhooks"]
 ---
 
 When a course creator outgrows Zapier, they inevitably start asking about the "Teachable API." They want to automatically provision user accounts, sync complex CRM data, and build bespoke dashboards.

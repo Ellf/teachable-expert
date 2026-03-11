@@ -3,8 +3,10 @@ title: "Building a Resilient Teachable to Airtable Sync (Why Zapier Breaks)"
 description: "Google Sheets and Zapier are too fragile for production revenue data. Learn how to build a bulletproof webhook bridge to Airtable."
 method: "POST /webhooks/database"
 pubDate: 2026-03-09
-coverImage: "/teachable-airtable.jpg"
+coverImage: "/images/cover/teachable-airtable-no-zapier.jpg"
+articleImage: "/images/article/teachable-airtable.jpg"
 category: "database"
+tags: ["teachable", "Airtable", "webhooks", "automation"]
 ---
 
 If you run a high-volume Teachable school, you need a database. Most creators start with a Zapier integration that pushes new sales into a Google Sheet.

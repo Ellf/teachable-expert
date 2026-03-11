@@ -3,8 +3,10 @@ title: "Advanced Teachable Email Syncing: Handling Refunds & Progress Tags"
 description: "Why your Zapier email integration is failing your marketing team, and how to build a robust ActiveCampaign or Mailchimp webhook bridge."
 method: "POST /webhooks/teachable"
 pubDate: 2026-03-09
-coverImage: "/teachable-mailchimp.jpg"
+coverImage: "/images/cover/teachable-activecampaign-mailchimp-no-zapier.jpg"
+articleImage: "/images/article/teachable-mailchimp.jpg"
 category: "email"
+tags: ["teachable", "ActiveCampaign", "Mailchimp", "webhooks", "automation"]
 ---
 
 Connecting Teachable to ActiveCampaign or Mailchimp via standard automation tools usually works on day one. A student buys a course, and they get added to a list.

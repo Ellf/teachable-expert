@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ArticleCTA from '../../components/ArticleCTA.astro';
+import ArchitectDisclaimer from "../../components/ArchitectDisclaimer.astro";
 
 export async function getStaticPaths() {
     const guides = await getCollection('api-guides');
@@ -33,7 +34,7 @@ const schema = {
 <Layout
     title={`${guide.data.title} | Teachable Expert`}
     description={guide.data.description}
-    image={guide.data.coverImage}
+    image={guide.data.articleImage}
     type="article"
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
@@ -41,9 +42,9 @@ const schema = {
 
     <article>
       <header class="mb-12 text-center">
-        {guide.data.coverImage && (
+        {(guide.data.articleImage || guide.data.coverImage) && (
             <img
-                src={guide.data.coverImage}
+                src={guide.data.articleImage || guide.data.coverImage}
                 alt={`Cover image for ${guide.data.title}`}
                 class="mb-10 aspect-1200/630 w-full rounded-3xl object-cover shadow-xl ring-1 ring-slate-900/5 dark:ring-white/10"
             />
@@ -63,17 +64,29 @@ const schema = {
             {guide.data.description}
         </p>
 
-        <div class="mt-6 flex items-center justify-center gap-4 text-sm text-slate-500">
+        <div class="mt-6 flex items-center flex-col justify-center gap-4 text-sm text-slate-500">
           <time datetime={guide.data.pubDate.toISOString()}>
             Published on {guide.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
           </time>
+          {guide.data.tags && guide.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {guide.data.tags.map((tag) => (
+                    <span class="inline-flex items-center rounded-md bg-fuchsia-500/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-fuchsia-500 ring-1 ring-inset ring-fuchsia-500/30 dark:bg-fuchsia-500/20 dark:text-fuchsia-300 dark:ring-fuchsia-500/50">
+                {tag}
+              </span>
+                ))}
+              </div>
+          )}
         </div>
+
       </header>
+
 
       <div class="prose prose-slate prose-lg mx-auto dark:prose-invert prose-a:text-expert-500 hover:prose-a:text-expert-600 prose-code:font-mono prose-code:text-expert-500 prose-code:bg-slate-100 dark:prose-code:bg-slate-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-800">
         <Content />
       </div>
 
+      <ArchitectDisclaimer />
       <ArticleCTA title={guide.data.title} />
 
     </article>
