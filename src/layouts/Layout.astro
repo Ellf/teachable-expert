@@ -44,6 +44,13 @@ const socialImageURL = new URL(image, 'https://teachable.expert');
     <meta property="twitter:image" content={socialImageURL} />
 
     <slot name="head" />
+    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TKFRKFD5C6');
+    </script>
   </head>
   <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
   <Header />
