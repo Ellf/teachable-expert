@@ -86,6 +86,3 @@ app.listen(3000, () => console.log('Secure Teachable-Airtable sync running'));
 * **Schema Validation:** The API enforces strict field types. If someone tries to put text in your Revenue column, the API rejects it cleanly instead of corrupting your database.
 * **Relational Power:** Once the data is in Airtable, you can easily link student records to specific cohorts, automatically calculate Lifetime Value (LTV), and trigger advanced marketing sequences.
 * **Total Stability:** No more waking up to broken Zapier paths.
-
-### Ready to build a real database?
-If you are tired of patching broken spreadsheets and want a rock-solid data pipeline for your Teachable school, **[let's talk architecture](https://purplehippo.io/#contact-form)**.

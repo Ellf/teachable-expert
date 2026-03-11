@@ -56,5 +56,31 @@ const socialImageURL = new URL(image, 'https://teachable.expert');
   <Header />
   <slot />
   <Footer />
+  <script>
+    declare global {
+      interface Window {
+        gtag: (...args: any[]) => void;
+      }
+    }
+    // Listen for all clicks on the document
+    document.addEventListener('click', (event) => {
+      if (!(event.target instanceof Element)) return;
+      // Check if the clicked element (or its parent) has our analytics attribute
+      const target = event.target.closest('[data-analytics]');
+
+      if (target) {
+        const ctaSource = target.getAttribute('data-analytics');
+
+        // Fire the custom event to GA4 via the Partytown bridge
+        window.gtag('event', 'generate_lead', {
+          event_category: 'engagement',
+          event_label: ctaSource,
+          value: 1
+        });
+
+        console.log(`Analytics fired: Lead from ${ctaSource}`); // Helpful for local debugging
+      }
+    });
+  </script>
   </body>
 </html>

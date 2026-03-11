@@ -21,7 +21,14 @@ export default defineConfig({
     },
   },
 
-  integrations: [sitemap(), partytown()],
+  integrations: [
+    sitemap(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push', 'gtag']
+      }
+    })
+  ],
   redirects: {
     '/teachable-api': '/api-guides/teachable-api'
   }

@@ -1,0 +1,23 @@
+---
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="mt-12 rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-slate-800 dark:bg-slate-900/50">
+  <h3 class="mb-3 text-2xl font-bold text-slate-900 dark:text-white">
+    Need an enterprise-grade integration?
+  </h3>
+  <p class="mb-6 text-slate-600 dark:text-slate-400">
+    If your team doesn't have the bandwidth to build and maintain this infrastructure, let's lock down your data pipeline before it gets exploited.
+  </p>
+  <a
+      href="https://purplehippo.io/#contact-form"
+      class="inline-block rounded-full bg-sky-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-sky-400 dark:bg-sky-600 dark:hover:bg-sky-500"
+      data-analytics={`Article CTA: ${title}`}
+  >
+    Let's talk architecture
+  </a>
+</div>

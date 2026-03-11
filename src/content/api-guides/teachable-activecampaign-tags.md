@@ -92,6 +92,3 @@ app.listen(3000, () => console.log('Teachable-to-ActiveCampaign bridge running')
 * **Data Integrity:** Your email lists stay perfectly in sync with your actual Teachable revenue. If someone refunds, your marketing automation knows instantly.
 * **Granular Targeting:** By listening to `Enrollment.Percent` or `Lecture.Completed` webhooks, you can build highly specific retargeting campaigns for students who get stuck in week 2 of your cohort.
 * **Cost Efficiency:** Running a serverless function costs pennies a month, completely eliminating the need for expensive Zapier paths or Make.com operations.
-
-### Outgrowing your current automation?
-If your marketing team is struggling with inaccurate Teachable data in your CRM, **[let's talk architecture](https://purplehippo.io/#contact-form)** and build a custom sync that actually works.

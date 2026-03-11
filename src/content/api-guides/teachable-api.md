@@ -61,5 +61,3 @@ If you choose the event-driven route, you must be aware of Teachable's biggest a
 
 ### Need a Custom Architecture?
 Building a reliable data pipeline for a high-volume Teachable school requires handling rate limits, securing endpoints, and knowing exactly when to use REST vs. Webhooks.
-
-If your team doesn't have the bandwidth to build and maintain this infrastructure, **[let's talk architecture](https://purplehippo.io/contact)**.

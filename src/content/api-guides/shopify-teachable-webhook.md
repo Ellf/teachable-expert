@@ -100,6 +100,3 @@ app.listen(3000, () => console.log('Shopify-Teachable bridge running on port 300
 
 ### Why this beats No-Code
 By controlling the raw code, you gain total flexibility. You can easily add logic to check if a customer already exists, assign specific Teachable pricing plans, or trigger an internal Slack alert if the API call fails—things that would cost hundreds of dollars a month to run on enterprise automation platforms.
-
-### Need a Custom Integration?
-If you are scaling a Shopify store and need bulletproof sync logic between your physical inventory and Teachable courses, [let's talk architecture](https://purplehippo.io/#contact-form).

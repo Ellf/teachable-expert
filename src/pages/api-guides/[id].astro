@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import ArticleCTA from '../../components/ArticleCTA.astro';
 
 export async function getStaticPaths() {
     const guides = await getCollection('api-guides');
@@ -44,7 +45,7 @@ const schema = {
             <img
                 src={guide.data.coverImage}
                 alt={`Cover image for ${guide.data.title}`}
-                class="mb-10 aspect-[1200/630] w-full rounded-3xl object-cover shadow-xl ring-1 ring-slate-900/5 dark:ring-white/10"
+                class="mb-10 aspect-1200/630 w-full rounded-3xl object-cover shadow-xl ring-1 ring-slate-900/5 dark:ring-white/10"
             />
         )}
 
@@ -72,6 +73,8 @@ const schema = {
       <div class="prose prose-slate prose-lg mx-auto dark:prose-invert prose-a:text-expert-500 hover:prose-a:text-expert-600 prose-code:font-mono prose-code:text-expert-500 prose-code:bg-slate-100 dark:prose-code:bg-slate-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-800">
         <Content />
       </div>
+
+      <ArticleCTA title={guide.data.title} />
 
     </article>
 

@@ -75,6 +75,3 @@ app.listen(3000, () => console.log('Secure Teachable gateway running'));
 * **Protects your Database:** Bad actors cannot corrupt your CRM or Airtable base with forged student data.
 * **Saves Compute:** By rejecting bad requests at the middleware level, your server doesn't waste CPU cycles or database read/writes parsing malicious JSON.
 * **Prevents Revenue Loss:** It completely locks down automated enrollment systems, ensuring no one gets access to your intellectual property without a verified Teachable transaction.
-
-### Need an enterprise-grade integration?
-If your current Teachable automations are relying on unprotected endpoints, **[let's talk architecture](https://purplehippo.io/#contact-form)** to lock down your data pipeline before it gets exploited.
