@@ -4,9 +4,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 import sitemap from '@astrojs/sitemap';
 
-import partytown from '@astrojs/partytown';
-
-// https://astro.build/config
 export default defineConfig({
   site: 'https://teachable.expert',
   vite: {
@@ -15,19 +12,13 @@ export default defineConfig({
 
   markdown: {
     shikiConfig: {
-      // 'dracula', 'material-theme-palenight', or 'github-dark' all look great
       theme: 'dracula',
-      wrap: true, // Prevents horizontal scrolling on mobile
+      wrap: true,
     },
   },
 
   integrations: [
     sitemap(),
-    partytown({
-      config: {
-        forward: ['dataLayer.push', 'gtag']
-      }
-    })
   ],
   redirects: {
     '/teachable-api': '/api-guides/teachable-api'
